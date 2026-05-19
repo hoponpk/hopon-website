@@ -9,19 +9,14 @@ const APP_URL = 'https://app.hopon.pk';
 
 // ── Reusable primitives ────────────────────────────────────────────────────
 
-function Logo({ dark = false }: { dark?: boolean }) {
+function Logo({ _dark = false }: { _dark?: boolean }) {
   return (
-    <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>
-      <span style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
-        fontWeight: 900,
-        fontSize: '1.65rem',
-        letterSpacing: '-0.01em',
-        color: dark ? '#111111' : '#F5C518',
-        lineHeight: 1,
-      }}>
-        HOP<span style={{ color: dark ? '#F5C518' : '#ffffff' }}>ON</span>
-      </span>
+    <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+      <img
+        src="/logo.jpg"
+        alt="Hopon"
+        style={{ height: 44, width: 44, borderRadius: 8, objectFit: 'cover', display: 'block' }}
+      />
     </a>
   );
 }
@@ -866,13 +861,7 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
       background: '#111111', padding: '1.5rem',
     }}>
       <div style={{ marginBottom: '2rem' }}>
-        <span style={{
-          fontFamily: "'Barlow Condensed', sans-serif",
-          fontSize: '2.4rem', fontWeight: 900, letterSpacing: '-0.01em',
-          color: '#F5C518',
-        }}>
-          HOP<span style={{ color: '#ffffff' }}>ON</span>
-        </span>
+        <img src="/logo.jpg" alt="Hopon" style={{ height: 80, width: 80, borderRadius: 16, objectFit: 'cover' }} />
       </div>
       <form onSubmit={attempt} style={{ width: '100%', maxWidth: 340 }}>
         <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '1.25rem', textAlign: 'center' }}>
