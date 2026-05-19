@@ -832,11 +832,92 @@ function Footer() {
   );
 }
 
+// ── Password Gate ──────────────────────────────────────────────────────────
+
+const GATE_KEY = 'hopon_preview_unlocked';
+const GATE_PASSWORD = 'hopon2025';
+
+function PasswordGate({ children }: { children: React.ReactNode }) {
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(GATE_KEY) === '1');
+  const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => { if (!unlocked) inputRef.current?.focus(); }, [unlocked]);
+
+  if (unlocked) return <>{children}</>;
+
+  function attempt(e: React.FormEvent) {
+    e.preventDefault();
+    if (value === GATE_PASSWORD) {
+      sessionStorage.setItem(GATE_KEY, '1');
+      setUnlocked(true);
+    } else {
+      setError(true);
+      setValue('');
+      setTimeout(() => setError(false), 1800);
+    }
+  }
+
+  return (
+    <div style={{
+      minHeight: '100dvh', display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      background: '#111111', padding: '1.5rem',
+    }}>
+      <div style={{ marginBottom: '2rem' }}>
+        <span style={{
+          fontFamily: "'Barlow Condensed', sans-serif",
+          fontSize: '2.4rem', fontWeight: 900, letterSpacing: '-0.01em',
+          color: '#F5C518',
+        }}>
+          HOP<span style={{ color: '#ffffff' }}>ON</span>
+        </span>
+      </div>
+      <form onSubmit={attempt} style={{ width: '100%', maxWidth: 340 }}>
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '1.25rem', textAlign: 'center' }}>
+          This preview is private. Enter the password to continue.
+        </p>
+        <input
+          ref={inputRef}
+          type="password"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          placeholder="Password"
+          autoComplete="current-password"
+          style={{
+            width: '100%', padding: '0.85rem 1rem',
+            background: '#1C1C1C', border: `1.5px solid ${error ? '#ef4444' : '#333'}`,
+            borderRadius: 10, color: '#fff', fontSize: '1rem',
+            outline: 'none', marginBottom: '0.75rem',
+            transition: 'border-color 140ms',
+            fontFamily: "'DM Sans', sans-serif",
+          }}
+        />
+        {error && (
+          <p style={{ color: '#ef4444', fontSize: '0.8rem', marginBottom: '0.75rem', textAlign: 'center' }}>
+            Incorrect password.
+          </p>
+        )}
+        <button type="submit" style={{
+          width: '100%', padding: '0.85rem',
+          background: '#F5C518', color: '#111', border: 'none', borderRadius: 10,
+          fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.1rem',
+          fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase',
+          cursor: 'pointer',
+        }}>
+          Enter
+        </button>
+      </form>
+    </div>
+  );
+}
+
 // ── App ────────────────────────────────────────────────────────────────────
 
 export function App() {
   return (
-    <>
+    <PasswordGate>
       <Navbar />
       <main>
         <Hero />
@@ -848,6 +929,6 @@ export function App() {
         <JoinCTA />
       </main>
       <Footer />
-    </>
+    </PasswordGate>
   );
 }
