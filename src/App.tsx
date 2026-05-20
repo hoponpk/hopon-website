@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   MapPin, Users, Zap, Shield, Star,
   CheckCircle2, ChevronRight, Menu, X,
-  Leaf, Clock, MessageSquare, BadgeCheck, Car, ArrowRight,
+  Leaf, Clock, MessageSquare, BadgeCheck, Car, ArrowRight, XCircle,
 } from 'lucide-react';
 
 const APP_URL = 'https://app.hopon.pk';
@@ -654,6 +654,168 @@ function WhyHopon() {
   );
 }
 
+// ── Comparison ─────────────────────────────────────────────────────────────
+
+function Check() {
+  return <CheckCircle2 size={18} color="#22A06B" strokeWidth={2.5} />;
+}
+function Cross() {
+  return <XCircle size={18} color="#ef4444" strokeWidth={2.5} />;
+}
+
+function Comparison() {
+  const rows: {
+    feature: string;
+    indrive: React.ReactNode;
+    yango: React.ReactNode;
+    hopon: React.ReactNode;
+  }[] = [
+    {
+      feature: 'Pricing model',
+      indrive: 'Bidding (unpredictable)',
+      yango: 'Fixed + surge pricing',
+      hopon: <><Check /> Per-seat split — lowest cost</>,
+    },
+    {
+      feature: 'Surge pricing',
+      indrive: 'N/A (bidding war)',
+      yango: <><Cross /> Yes — peak hours spike</>,
+      hopon: <><Check /> Never. Fare fixed upfront</>,
+    },
+    {
+      feature: 'Carpooling',
+      indrive: <><Cross /> No</>,
+      yango: <><Cross /> No</>,
+      hopon: <><Check /> Yes — core feature</>,
+    },
+    {
+      feature: 'Verified riders & drivers',
+      indrive: <><Cross /> No identity check</>,
+      yango: <><Cross /> No identity check</>,
+      hopon: <><Check /> Work / university email</>,
+    },
+    {
+      feature: 'Anonymous profiles',
+      indrive: <><Cross /> Yes — no accountability</>,
+      yango: <><Cross /> Yes — no accountability</>,
+      hopon: <><Check /> No — real institution ID</>,
+    },
+    {
+      feature: 'Cost savings',
+      indrive: 'Full fare, no sharing',
+      yango: 'Full fare, no sharing',
+      hopon: <><Check /> Up to 60% off daily commute</>,
+    },
+    {
+      feature: 'Upfront transparent fare',
+      indrive: <><Cross /> No — bid outcome varies</>,
+      yango: 'Partial (surge can apply)',
+      hopon: <><Check /> Always shown before booking</>,
+    },
+    {
+      feature: 'In-app messaging',
+      indrive: <><Cross /> No</>,
+      yango: <><Cross /> No</>,
+      hopon: <><Check /> Yes — no number sharing</>,
+    },
+    {
+      feature: 'Flexible departure window',
+      indrive: <><Cross /> Immediate only</>,
+      yango: <><Cross /> Immediate only</>,
+      hopon: <><Check /> ±15 / ±30 / ±60 min</>,
+    },
+    {
+      feature: 'Two-way ratings',
+      indrive: 'Rider only',
+      yango: 'Rider only',
+      hopon: <><Check /> Both sides rated every trip</>,
+    },
+  ];
+
+  return (
+    <section style={{ background: '#fff', padding: '6rem 1.5rem' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.12em', color: '#F5C518', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+            How we compare
+          </p>
+          <h2 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 900, fontSize: 'clamp(2.2rem,5vw,3.5rem)', textTransform: 'uppercase', color: '#111', lineHeight: 1.05 }}>
+            Hopon vs. <span style={{ color: '#F5C518' }}>The Market</span>
+          </h2>
+          <p style={{ marginTop: '0.75rem', fontSize: '1rem', color: '#6B6B6B', maxWidth: 520, margin: '0.75rem auto 0' }}>
+            Feature-by-feature comparison with the incumbents.
+          </p>
+        </div>
+
+        <div style={{ overflowX: 'auto', borderRadius: 20, border: '1px solid #E0DDD8' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 680 }}>
+            <thead>
+              <tr>
+                <th style={{
+                  background: '#F5F4F0', padding: '1rem 1.25rem',
+                  textAlign: 'left', fontSize: '0.7rem', fontWeight: 700,
+                  letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888',
+                  borderBottom: '1px solid #E0DDD8', width: '28%',
+                }}>Feature</th>
+                <th style={{
+                  background: '#F5F4F0', padding: '1rem 1.25rem',
+                  textAlign: 'left', fontSize: '0.7rem', fontWeight: 700,
+                  letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888',
+                  borderBottom: '1px solid #E0DDD8', borderLeft: '1px solid #E0DDD8',
+                }}>InDrive</th>
+                <th style={{
+                  background: '#F5F4F0', padding: '1rem 1.25rem',
+                  textAlign: 'left', fontSize: '0.7rem', fontWeight: 700,
+                  letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888',
+                  borderBottom: '1px solid #E0DDD8', borderLeft: '1px solid #E0DDD8',
+                }}>Yango</th>
+                <th style={{
+                  background: 'rgba(245,197,24,0.08)', padding: '1rem 1.25rem',
+                  textAlign: 'left', fontSize: '0.7rem', fontWeight: 700,
+                  letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C49B00',
+                  borderBottom: '1px solid rgba(245,197,24,0.25)', borderLeft: '1px solid rgba(245,197,24,0.25)',
+                }}>Hopon</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr key={row.feature} style={{ borderBottom: i < rows.length - 1 ? '1px solid #E0DDD8' : 'none' }}>
+                  <td style={{
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.9rem', fontWeight: 600, color: '#111',
+                  }}>{row.feature}</td>
+                  <td style={{
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.88rem', color: '#6B6B6B',
+                    borderLeft: '1px solid #E0DDD8',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{row.indrive}</div>
+                  </td>
+                  <td style={{
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.88rem', color: '#6B6B6B',
+                    borderLeft: '1px solid #E0DDD8',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{row.yango}</div>
+                  </td>
+                  <td style={{
+                    padding: '1rem 1.25rem',
+                    fontSize: '0.88rem', fontWeight: 600, color: '#111',
+                    background: 'rgba(245,197,24,0.06)',
+                    borderLeft: '1px solid rgba(245,197,24,0.25)',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{row.hopon}</div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Safety ─────────────────────────────────────────────────────────────────
 
 function Safety() {
@@ -918,6 +1080,7 @@ export function App() {
         <ForRiders />
         <ForDrivers />
         <WhyHopon />
+        <Comparison />
         <Safety />
         <JoinCTA />
       </main>
