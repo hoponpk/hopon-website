@@ -9,7 +9,7 @@ const APP_URL = 'https://app.hopon.pk';
 
 // ── Reusable primitives ────────────────────────────────────────────────────
 
-function Logo({ _dark = false }: { _dark?: boolean }) {
+function Logo() {
   return (
     <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
       <img
@@ -75,6 +75,10 @@ function Navbar() {
     { label: 'Safety',       href: '#safety' },
   ];
 
+  const linkColor      = scrolled ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.7)';
+  const linkHoverColor = scrolled ? '#fff' : '#111';
+  const iconColor      = scrolled ? '#fff' : '#111';
+
   return (
     <>
       <nav style={{
@@ -97,14 +101,14 @@ function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="desktop-nav">
           {links.map((l) => (
             <a key={l.href} href={l.href} style={{
-              color: 'rgba(255,255,255,0.75)',
+              color: linkColor,
               textDecoration: 'none',
               fontSize: '0.9rem',
               fontWeight: 500,
               transition: 'color 150ms',
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
+            onMouseEnter={(e) => (e.currentTarget.style.color = linkHoverColor)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = linkColor)}
             >{l.label}</a>
           ))}
         </div>
@@ -118,7 +122,7 @@ function Navbar() {
           type="button"
           className="mobile-menu-btn"
           onClick={() => setMobileOpen(true)}
-          style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: 4 }}
+          style={{ background: 'none', border: 'none', color: iconColor, cursor: 'pointer', padding: 4 }}
         >
           <Menu size={24} />
         </button>
@@ -172,8 +176,8 @@ function RouteAnimation() {
     <div style={{ position: 'relative', width: '100%', maxWidth: 480, margin: '0 auto' }}>
       {/* Map card */}
       <div style={{
-        background: 'rgba(255,255,255,0.05)',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: 'rgba(255,255,255,0.92)',
+        border: '1px solid rgba(0,0,0,0.08)',
         borderRadius: 24,
         padding: '2rem',
         backdropFilter: 'blur(8px)',
@@ -188,11 +192,11 @@ function RouteAnimation() {
               boxShadow: '0 0 0 4px rgba(34,160,107,0.2)',
             }} />
             <div style={{
-              flex: 1, background: 'rgba(255,255,255,0.08)',
+              flex: 1, background: 'rgba(0,0,0,0.04)',
               borderRadius: 8, padding: '0.6rem 0.8rem',
             }}>
-              <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>FROM</div>
-              <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 500 }}>Johar Town, Lahore</div>
+              <div style={{ fontSize: '0.7rem', color: 'rgba(0,0,0,0.4)', marginBottom: 2 }}>FROM</div>
+              <div style={{ fontSize: '0.9rem', color: '#111', fontWeight: 500 }}>Johar Town, Lahore</div>
             </div>
           </div>
 
@@ -200,7 +204,7 @@ function RouteAnimation() {
           <div style={{ display: 'flex', paddingLeft: 6, marginLeft: 1, gap: 12 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 3, paddingLeft: 0 }}>
               {[0,1,2,3].map((i) => (
-                <div key={i} style={{ width: 2, height: 8, background: 'rgba(255,255,255,0.15)', borderRadius: 1 }} />
+                <div key={i} style={{ width: 2, height: 8, background: 'rgba(0,0,0,0.15)', borderRadius: 1 }} />
               ))}
             </div>
           </div>
@@ -213,11 +217,11 @@ function RouteAnimation() {
               boxShadow: '0 0 0 4px rgba(245,197,24,0.2)',
             }} />
             <div style={{
-              flex: 1, background: 'rgba(255,255,255,0.08)',
+              flex: 1, background: 'rgba(0,0,0,0.04)',
               borderRadius: 8, padding: '0.6rem 0.8rem',
             }}>
-              <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>TO</div>
-              <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 500 }}>Gulberg III, Lahore</div>
+              <div style={{ fontSize: '0.7rem', color: 'rgba(0,0,0,0.4)', marginBottom: 2 }}>TO</div>
+              <div style={{ fontSize: '0.9rem', color: '#111', fontWeight: 500 }}>Gulberg III, Lahore</div>
             </div>
           </div>
         </div>
@@ -226,7 +230,7 @@ function RouteAnimation() {
         <div style={{
           marginTop: '1.25rem',
           background: 'rgba(245,197,24,0.12)',
-          border: '1px solid rgba(245,197,24,0.25)',
+          border: '1px solid rgba(245,197,24,0.35)',
           borderRadius: 12,
           padding: '0.75rem 1rem',
           display: 'flex',
@@ -241,8 +245,8 @@ function RouteAnimation() {
             <Car size={18} color="#111" />
           </div>
           <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#F5C518' }}>Driver found</div>
-            <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', marginTop: 1 }}>Ahmed K. · 8 min away · PKR 180</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#111' }}>Driver found</div>
+            <div style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.55)', marginTop: 1 }}>Ahmed K. · 8 min away · PKR 180</div>
           </div>
           <div style={{ marginLeft: 'auto' }}>
             <CheckCircle2 size={18} color="#22A06B" />
@@ -262,13 +266,13 @@ function RouteAnimation() {
             { val: 'PKR 180', lbl: 'Fare' },
           ].map(({ val, lbl }) => (
             <div key={lbl} style={{
-              background: 'rgba(255,255,255,0.05)',
+              background: 'rgba(0,0,0,0.04)',
               borderRadius: 8,
               padding: '0.5rem',
               textAlign: 'center',
             }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>{val}</div>
-              <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{lbl}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#111' }}>{val}</div>
+              <div style={{ fontSize: '0.65rem', color: 'rgba(0,0,0,0.4)', marginTop: 2 }}>{lbl}</div>
             </div>
           ))}
         </div>
@@ -280,7 +284,7 @@ function RouteAnimation() {
 function Hero() {
   return (
     <section style={{
-      background: '#111111',
+      background: '#F5C518',
       minHeight: '100dvh',
       display: 'flex',
       flexDirection: 'column',
@@ -291,8 +295,8 @@ function Hero() {
     }}>
       {/* Background texture */}
       <div style={{
-        position: 'absolute', inset: 0, opacity: 0.03,
-        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,1) 40px, rgba(255,255,255,1) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,1) 40px, rgba(255,255,255,1) 41px)',
+        position: 'absolute', inset: 0, opacity: 1,
+        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px)',
         pointerEvents: 'none',
       }} />
 
@@ -307,14 +311,14 @@ function Hero() {
           <div>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'rgba(245,197,24,0.12)',
-              border: '1px solid rgba(245,197,24,0.25)',
+              background: 'rgba(0,0,0,0.08)',
+              border: '1px solid rgba(0,0,0,0.12)',
               borderRadius: 9999,
               padding: '0.35rem 0.9rem',
               marginBottom: '1.5rem',
             }}>
-              <MapPin size={12} color="#F5C518" />
-              <span style={{ fontSize: '0.78rem', color: '#F5C518', fontWeight: 600 }}>Lahore, Pakistan</span>
+              <MapPin size={12} color="#111" />
+              <span style={{ fontSize: '0.78rem', color: '#111', fontWeight: 600 }}>Lahore, Pakistan</span>
             </div>
 
             <h1 style={{
@@ -322,19 +326,19 @@ function Hero() {
               fontWeight: 900,
               fontSize: 'clamp(3rem, 8vw, 5.5rem)',
               lineHeight: 0.95,
-              color: '#ffffff',
+              color: '#111111',
               textTransform: 'uppercase',
               letterSpacing: '-0.01em',
               marginBottom: '1.5rem',
             }}>
               COMMUTE<br />
               SMARTER.<br />
-              <span style={{ color: '#F5C518' }}>TOGETHER.</span>
+              <span style={{ color: '#fff' }}>TOGETHER.</span>
             </h1>
 
             <p style={{
               fontSize: '1.05rem',
-              color: 'rgba(255,255,255,0.6)',
+              color: 'rgba(0,0,0,0.6)',
               lineHeight: 1.65,
               maxWidth: 440,
               marginBottom: '2.5rem',
@@ -344,8 +348,8 @@ function Hero() {
             </p>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Pill href={APP_URL}>Find a ride <ArrowRight size={16} /></Pill>
-              <Pill href={APP_URL} variant="ghost">I'm a driver</Pill>
+              <Pill href={APP_URL} variant="dark">Find a ride <ArrowRight size={16} /></Pill>
+              <Pill href={APP_URL} variant="outline-light">I'm a driver</Pill>
             </div>
 
             {/* Social proof */}
@@ -354,13 +358,13 @@ function Hero() {
                 {['#F5C518','#22A06B','#2563EB','#E8402A','#9B59B6'].map((c, i) => (
                   <div key={c} style={{
                     width: 32, height: 32, borderRadius: '50%',
-                    background: c, border: '2px solid #111',
+                    background: c, border: '2px solid rgba(0,0,0,0.15)',
                     marginLeft: i === 0 ? 0 : -8,
                   }} />
                 ))}
               </div>
-              <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.4 }}>
-                Join <strong style={{ color: '#fff' }}>verified Lahori</strong> professionals<br />carpooling daily
+              <p style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.55)', lineHeight: 1.4 }}>
+                Join <strong style={{ color: '#111' }}>verified Lahori</strong> professionals<br />carpooling daily
               </p>
             </div>
           </div>
@@ -477,18 +481,18 @@ function ForRiders() {
   ];
 
   return (
-    <section id="riders" style={{ background: '#111', padding: '6rem 1.5rem' }}>
+    <section id="riders" style={{ background: '#F5F4F0', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="split-grid">
         {/* Left */}
         <div>
           <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.12em', color: '#F5C518', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
             For riders
           </p>
-          <h2 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 900, fontSize: 'clamp(2.2rem,4.5vw,3.2rem)', textTransform: 'uppercase', color: '#fff', lineHeight: 1.05, marginBottom: '1rem' }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 900, fontSize: 'clamp(2.2rem,4.5vw,3.2rem)', textTransform: 'uppercase', color: '#111', lineHeight: 1.05, marginBottom: '1rem' }}>
             YOUR DAILY COMMUTE.<br />
             <span style={{ color: '#F5C518' }}>HALF THE COST.</span>
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: '2rem', maxWidth: 400 }}>
+          <p style={{ fontSize: '0.95rem', color: '#6B6B6B', lineHeight: 1.7, marginBottom: '2rem', maxWidth: 400 }}>
             Stop paying full rickshaw or ride-hailing prices every morning. Share the journey with a verified driver heading your way and split the fare honestly.
           </p>
           <Pill href={APP_URL}>Find a carpool <ArrowRight size={16} /></Pill>
@@ -499,13 +503,13 @@ function ForRiders() {
           {perks.map(({ icon, text }) => (
             <div key={text} style={{
               display: 'flex', alignItems: 'flex-start', gap: 14,
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: '#fff',
+              border: '1px solid #E0DDD8',
               borderRadius: 12,
               padding: '0.9rem 1rem',
             }}>
               <span style={{ color: '#F5C518', flexShrink: 0, marginTop: 1 }}>{icon}</span>
-              <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{text}</span>
+              <span style={{ fontSize: '0.9rem', color: '#444', lineHeight: 1.5 }}>{text}</span>
             </div>
           ))}
         </div>
@@ -532,14 +536,14 @@ function ForDrivers() {
   ];
 
   return (
-    <section id="drivers" style={{ background: '#F5F4F0', padding: '6rem 1.5rem' }}>
+    <section id="drivers" style={{ background: '#fff', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="split-grid-rev">
         {/* Left — perks */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }} className="driver-perks">
           {perks.map(({ icon, text }) => (
             <div key={text} style={{
               display: 'flex', alignItems: 'flex-start', gap: 14,
-              background: '#fff',
+              background: '#F5F4F0',
               border: '1px solid #E0DDD8',
               borderRadius: 12,
               padding: '0.9rem 1rem',
@@ -610,13 +614,13 @@ function WhyHopon() {
   ];
 
   return (
-    <section style={{ background: '#111', padding: '6rem 1.5rem' }}>
+    <section style={{ background: '#F5F4F0', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <p style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.12em', color: '#F5C518', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
             Why Hopon
           </p>
-          <h2 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 900, fontSize: 'clamp(2.2rem,5vw,3.5rem)', textTransform: 'uppercase', color: '#fff', lineHeight: 1.05 }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 900, fontSize: 'clamp(2.2rem,5vw,3.5rem)', textTransform: 'uppercase', color: '#111', lineHeight: 1.05 }}>
             BUILT DIFFERENT.<br />
             <span style={{ color: '#F5C518' }}>BUILT FOR LAHORE.</span>
           </h2>
@@ -625,17 +629,17 @@ function WhyHopon() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }} className="why-grid">
           {reasons.map((r, i) => (
             <div key={r.title} style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: '#fff',
+              border: '1px solid #E0DDD8',
               borderRadius: 20,
               padding: '1.75rem',
               gridColumn: i === 3 ? '1 / span 1' : undefined,
             }}>
               <div style={{ marginBottom: '1rem' }}>{r.icon}</div>
-              <h3 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 700, fontSize: '1.2rem', textTransform: 'uppercase', color: '#fff', marginBottom: '0.5rem' }}>
+              <h3 style={{ fontFamily: "'Barlow Condensed'", fontWeight: 700, fontSize: '1.2rem', textTransform: 'uppercase', color: '#111', marginBottom: '0.5rem' }}>
                 {r.title}
               </h3>
-              <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>{r.body}</p>
+              <p style={{ fontSize: '0.88rem', color: '#6B6B6B', lineHeight: 1.65 }}>{r.body}</p>
             </div>
           ))}
         </div>
@@ -677,7 +681,7 @@ function Safety() {
   ];
 
   return (
-    <section id="safety" style={{ background: '#F5F4F0', padding: '6rem 1.5rem' }}>
+    <section id="safety" style={{ background: '#fff', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="split-grid">
           {/* Left */}
@@ -698,7 +702,7 @@ function Safety() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             {items.map(({ icon, title, body }) => (
               <div key={title} style={{
-                background: '#fff',
+                background: '#F5F4F0',
                 border: '1px solid #E0DDD8',
                 borderRadius: 16,
                 padding: '1.25rem',
@@ -858,13 +862,13 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
     <div style={{
       minHeight: '100dvh', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
-      background: '#111111', padding: '1.5rem',
+      background: '#F5F4F0', padding: '1.5rem',
     }}>
       <div style={{ marginBottom: '2rem' }}>
         <img src="/logo.jpg" alt="Hopon" style={{ height: 80, width: 80, borderRadius: 16, objectFit: 'cover' }} />
       </div>
       <form onSubmit={attempt} style={{ width: '100%', maxWidth: 340 }}>
-        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: '1.25rem', textAlign: 'center' }}>
+        <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '0.9rem', marginBottom: '1.25rem', textAlign: 'center' }}>
           This preview is private. Enter the password to continue.
         </p>
         <input
@@ -876,8 +880,8 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
           autoComplete="current-password"
           style={{
             width: '100%', padding: '0.85rem 1rem',
-            background: '#1C1C1C', border: `1.5px solid ${error ? '#ef4444' : '#333'}`,
-            borderRadius: 10, color: '#fff', fontSize: '1rem',
+            background: '#fff', border: `1.5px solid ${error ? '#ef4444' : '#E0DDD8'}`,
+            borderRadius: 10, color: '#111', fontSize: '1rem',
             outline: 'none', marginBottom: '0.75rem',
             transition: 'border-color 140ms',
             fontFamily: "'DM Sans', sans-serif",
