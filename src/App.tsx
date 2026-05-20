@@ -352,21 +352,6 @@ function Hero() {
               <Pill href={APP_URL} variant="outline-light">I'm a driver</Pill>
             </div>
 
-            {/* Social proof */}
-            <div style={{ marginTop: '2.5rem', display: 'flex', alignItems: 'center', gap: 16 }}>
-              <div style={{ display: 'flex' }}>
-                {['#F5C518','#22A06B','#2563EB','#E8402A','#9B59B6'].map((c, i) => (
-                  <div key={c} style={{
-                    width: 32, height: 32, borderRadius: '50%',
-                    background: c, border: '2px solid rgba(0,0,0,0.15)',
-                    marginLeft: i === 0 ? 0 : -8,
-                  }} />
-                ))}
-              </div>
-              <p style={{ fontSize: '0.8rem', color: 'rgba(0,0,0,0.55)', lineHeight: 1.4 }}>
-                Join <strong style={{ color: '#111' }}>verified Lahori</strong> professionals<br />carpooling daily
-              </p>
-            </div>
           </div>
 
           {/* Right — app preview */}
